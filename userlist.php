@@ -10,12 +10,18 @@ try{
     <thead>
     <th>Name</th>
     <th>Username</th>
+    <th>Action</th>
     </thead>";
 
     foreach($rows as $row){
         echo "<tr>".
         "<td>".$row->name."</td>".
         "<td>".$row->username."</td>".
+        "<td><a href='edituser.php?
+        id=".$row->_id."&name=".$row->name.
+        "&username=".$row->username.
+        "&password=".$row->password.
+        "'>Edit</a> | <a href='user/delete.php?id=".$row->_id."'>Delete</a></td>".
         "</tr>";
     }
     echo "</table>";
