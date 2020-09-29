@@ -10,6 +10,7 @@
     <div class="container">
         <div class="row justify-content-center">
         <div class="col-md-6 mt-5">
+        <h1 class="text-center">Add New User</h1>
             <a href="userlist.php" class="btn btn-success btn-block">Go to user list</a>
             <form action="user/adduser.php" method="POST">
                 <div class="form-group">

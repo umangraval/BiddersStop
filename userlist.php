@@ -12,10 +12,10 @@
 <br>
 <?php
 try{
-    $manager = new MongoDB\Driver\Manager("mongodb://localhost:27017");
+    include 'user/db.inc.php';
     $query = new MongoDB\DRiver\Query([]);
 
-    $rows = $manager->executeQuery("phpbasics.test", $query);
+    $rows = $manager->executeQuery($dbname, $query);
     echo "<table class='table'>
     <thead>
     <th>Name</th>
