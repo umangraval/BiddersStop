@@ -15,9 +15,10 @@
 
     try{
         $bulk->insert($user);
+        include 'db.inc.php';
         $manager = new MongoDB\Driver\Manager('mongodb://localhost:27017');
-        $result = $manager->executeBulkWrite('phpbasics.test', $bulk);
-        echo "user added";    
+        $result = $manager->executeBulkWrite($dbname, $bulk);
+        header('Location: ../userlist.php');   
     }
     catch(MongoDB\Driver\Exception\Exception $e) {
         die("Error".$e);

@@ -14,8 +14,8 @@
             'password' => $pwd
         ]
     );
-        $manager = new MongoDB\Driver\Manager('mongodb://localhost:27017');
-        $result = $manager->executeBulkWrite('phpbasics.test', $bulk);
+        include 'db.inc.php';
+        $result = $manager->executeBulkWrite($dbname, $bulk);
         header("Location: ../userlist.php");
     }
     catch(MongoDB\Driver\Exception\Exception $e) {
