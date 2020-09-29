@@ -1,7 +1,37 @@
-<form action="user/update.php" method="POST">
-<input type="hidden" name="id" id="id"  value="<?php echo $_GET["id"]; ?>">
-Name: <input type="text" name="name" id="name" value="<?php echo $_GET["name"]; ?>"> <br>
-username: <input type="text" name="username" id="username" value="<?php echo $_GET["username"]; ?>"> <br>
-password: <input type="password" name="pwd" id="pwd" value="<?php echo $_GET["password"]; ?>"> <br>
-<input type="submit" value="Update">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+        <div class="col-md-6 mt-5">
+            <a href="userlist.php" class="btn btn-success btn-block">Go to user list</a>
+            <form action="user/update.php" method="POST">
+            <input type="hidden" name="id" id="id"  value="<?php echo $_GET["id"]; ?>">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text"  name="name" class="form-control" id="name" value="<?php echo $_GET["name"]; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text"  name="username" class="form-control" id="username" value="<?php echo $_GET["username"]; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password"  name="pwd" class="form-control" id="pwd" value="<?php echo $_GET["password"]; ?>">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Update</button>
+            </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
