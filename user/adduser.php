@@ -1,3 +1,5 @@
+<a href="../userlist.php">View User</a>
+<br>
 <?php
     $bulk = new MongoDB\Driver\BulkWrite;
     $name = $_POST["name"];
