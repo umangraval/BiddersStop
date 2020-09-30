@@ -13,7 +13,7 @@
 <?php
 try{
     include 'user/db.inc.php';
-    $query = new MongoDB\DRiver\Query([]);
+    $query = new MongoDB\Driver\Query([]);
 
     $rows = $manager->executeQuery($dbname, $query);
     echo "<table class='table'>

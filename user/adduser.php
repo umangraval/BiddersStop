@@ -5,6 +5,7 @@
     $name = $_POST["name"];
     $username = $_POST["username"];
     $pwd = $_POST["pwd"];
+    // $password = password_hash($pwd,  PASSWORD_DEFAULT);
 
     $user = [
         '_id' => new MongoDB\BSON\ObjectId,
