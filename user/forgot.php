@@ -12,7 +12,7 @@
         ]
     );
         include '../connect/db.inc.php';
-        $result = $manager->executeBulkWrite($dbname, $bulk);
+        $result = $manager->executeBulkWrite($dbuser, $bulk);
         header("Location: ../views/userlist.php");
     }
     catch(MongoDB\Driver\Exception\Exception $e) {

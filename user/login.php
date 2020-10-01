@@ -7,7 +7,7 @@ try{
     $filter = ['username' => $username];
     $query = new MongoDB\Driver\Query($filter);
 
-    $rows = $manager->executeQuery($dbname, $query);
+    $rows = $manager->executeQuery($dbuser, $query);
     $cursorArray = $rows->toArray();
     if(isset($cursorArray[0])) {
             if(password_verify($pwd, $cursorArray[0]->password)){

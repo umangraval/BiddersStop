@@ -25,7 +25,7 @@
 
     $query = new MongoDB\Driver\Query($filter);
 
-    $rows = $manager->executeQuery($dbname, $query);
+    $rows = $manager->executeQuery($dbuser, $query);
     $cursorArray = $rows->toArray();
     if(isset($cursorArray[0])) {
         $_SESSION["message"] = "Username Exist";
@@ -47,7 +47,7 @@
         $bulk->insert($user);
         // include 'db.inc.php';
         $manager = new MongoDB\Driver\Manager('mongodb://localhost:27017');
-        $result = $manager->executeBulkWrite($dbname, $bulk);
+        $result = $manager->executeBulkWrite($dbuser, $bulk);
         session_start();
         $_SESSION["loggedIn"] = true;
         $_SESSION["username"] = $username;

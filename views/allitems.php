@@ -16,7 +16,7 @@ echo("Enter my lord!");
     <title>Document</title>
 </head>
 <body>
-<a href="form.php" class="btn btn-success btn-block">New User</a>            
+<a href="form.php" class="btn btn-success btn-block">New Item</a>            
 <a href="../user/logout.php" class="btn btn-danger btn-block">Logout</a>
 <?php
     $id= $_SESSION['user'][0];
@@ -29,23 +29,19 @@ try{
     include '../connect/db.inc.php';
     $query = new MongoDB\Driver\Query([]);
 
-    $rows = $manager->executeQuery($dbuser, $query);
+    $rows = $manager->executeQuery($dbitem, $query);
     echo "<table class='table'>
     <thead>
-    <th>Name</th>
-    <th>Username</th>
+    <th>Description</th>
+    <th>Closing date</th>
     <th>Action</th>
     </thead>";
 
     foreach($rows as $row){
         echo "<tr>".
-        "<td>".$row->name."</td>".
-        "<td>".$row->username."</td>".
-        "<td><a class= 'btn btn-info' href='edituser.php?
-        id=".$row->_id."&name=".$row->name.
-        "&username=".$row->username.
-        "&password=".$row->password.
-        "'>Edit</a> <a class='btn btn-danger' href='../user/delete.php?id=".$row->_id."'>Delete</a></td>".
+        "<td>".$row->desc."</td>".
+        "<td>".$row->cdate."</td>".
+        "<td><a class='btn btn-success' href='../items/newbid.php?id=".$row->_id."'>Bid</a></td>".
         "</tr>";
     }
     echo "</table>";
