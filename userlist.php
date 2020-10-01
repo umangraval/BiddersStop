@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if($_SESSION["loggedIn"] != true) {
-    echo("Access denied!");
+   header('Location: error/accessdenied.html');
     exit();
 }
 echo("Enter my lord!");
