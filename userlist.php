@@ -1,3 +1,11 @@
+<?php 
+session_start();
+if($_SESSION["loggedIn"] != true) {
+    echo("Access denied!");
+    exit();
+}
+echo("Enter my lord!");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +17,8 @@
 </head>
 <body>
 <a href="form.php" class="btn btn-success btn-block">New User</a>            
+<a href="user/logout.php" class="btn btn-danger btn-block">Logout</a>            
+
 <br>
 <?php
 try{

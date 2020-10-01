@@ -1,4 +1,5 @@
 <?php
+session_start();
 try{
     include 'db.inc.php';
     $username = $_POST["username"];
@@ -10,11 +11,15 @@ try{
     $cursorArray = $rows->toArray();
     if(isset($cursorArray[0])) {
             if(password_verify($pwd, $cursorArray[0]->password)){
-                header('Location: ../userlist.php');
+                    $_SESSION["loggedIn"] = true;
+                    $_SESSION["username"] = $username;
+                    header('Location: ../userlist.php');
             } else {
-                echo("wrong pwd");
+                $_SESSION["message"] = "Wrong password";
+                header('Location: ../loginuser.php');                
             } 
     } else {
+        $_SESSION["message"] = "No User Found";
         header('Location: ../loginuser.php');
     }
 } catch(MongoDB\Driver\Exception\Exception $e){

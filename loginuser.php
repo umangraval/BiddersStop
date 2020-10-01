@@ -11,6 +11,15 @@
         <div class="row justify-content-center">
         <div class="col-md-6 mt-5">
         <h1 class="text-center">Login</h1>
+        <?php
+        session_start();
+            if (isset($_SESSION['message']))
+            {
+                echo '<div class="alert alert-danger" role="alert">'
+                .$_SESSION['message'].'</div>';
+                unset($_SESSION['message']);
+            }
+        ?>
             <!-- <a href="userlist.php" class="btn btn-success btn-block">Go to user list</a> -->
             <form action="user/login.php" method="POST">
                 <div class="form-group">
