@@ -21,7 +21,7 @@
             }
         ?>
             <!-- <a href="userlist.php" class="btn btn-success btn-block">Go to user list</a> -->
-            <form action="user/adduser.php" method="POST">
+            <form action="../user/adduser.php" method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text"  name="name" class="form-control" id="name" value="<?php echo isset($_SESSION['form']) ? $_SESSION['form']['name'] : '' ?>" placeholder="Enter Name">

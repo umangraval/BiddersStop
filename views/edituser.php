@@ -10,31 +10,19 @@
     <div class="container">
         <div class="row justify-content-center">
         <div class="col-md-6 mt-5">
-        <h1 class="text-center">Login</h1>
-        <?php
-        session_start();
-            if (isset($_SESSION['message']))
-            {
-                echo '<div class="alert alert-danger" role="alert">'
-                .$_SESSION['message'].'</div>';
-                unset($_SESSION['message']);
-            }
-        ?>
-            <!-- <a href="userlist.php" class="btn btn-success btn-block">Go to user list</a> -->
-            <form action="user/login.php" method="POST">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text"  name="username" class="form-control" id="username" value="<?php echo isset($_SESSION['form']) ? $_SESSION['form']['username'] : '' ?>" placeholder="Enter Username">
-                </div>
+        <h1 class="text-center">Edit User</h1>
+            <a href="userlist.php" class="btn btn-success btn-block">Go to user list</a>
+            <form action="../user/update.php" method="POST">
+            <input type="hidden" name="id" id="id"  value="<?php echo $_GET["id"]; ?>">
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password"  name="pwd" class="form-control" id="pwd" value="<?php echo isset($_SESSION['form']) ? $_SESSION['form']['pwd'] : '' ?>" placeholder="Enter Password">
+                    <input type="text"  name="pwd" class="form-control" id="pwd">
                 </div>
-                <?php
-                    unset($_SESSION['form']);
-                ?>
-                <button type="submit" class="btn btn-success btn-block">Login</button>
-                <a class="btn btn-primary btn-block" href="/register.php" role="button">Register</a>
+                <div class="form-group">
+                    <label for="cpassword">Confirm Password</label>
+                    <input type="password"  name="cpwd" class="form-control" id="cpwd">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Update</button>
             </form>
             </div>
         </div>

@@ -2,7 +2,7 @@
 <!-- <br> -->
 <?php
     session_start();
-    include 'db.inc.php';
+    include '../connect/db.inc.php';
     $bulk = new MongoDB\Driver\BulkWrite;
     $name = $_POST["name"];
     $username = $_POST["username"];
@@ -13,7 +13,7 @@
     if(!preg_match($regexUsername, $username)){
         $_SESSION["message"] = "Username should contain only alphanumeric characters";
         $_SESSION["form"] = $_POST;
-        header('Location: ../register.php');
+        header('Location: ../views/register.php');
         exit();
     } 
     // else if(!preg_match($regexPwd, $username)){
@@ -30,7 +30,7 @@
     if(isset($cursorArray[0])) {
         $_SESSION["message"] = "Username Exist";
         $_SESSION["form"] = $_POST;
-        header('Location: ../register.php');
+        header('Location: ../views/register.php');
         exit();
     }
     $pwd = $_POST["pwd"];
@@ -51,7 +51,7 @@
         session_start();
         $_SESSION["loggedIn"] = true;
         $_SESSION["username"] = $username;
-        header('Location: ../userlist.php');   
+        header('Location: ../views/userlist.php');   
     }
     catch(MongoDB\Driver\Exception\Exception $e) {
         die("Error".$e);

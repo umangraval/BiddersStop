@@ -1,7 +1,7 @@
 <?php
 session_start();
 try{
-    include 'db.inc.php';
+    include '../connect/db.inc.php';
     $username = $_POST["username"];
     $pwd = $_POST["pwd"];
     $filter = ['username' => $username];
@@ -14,16 +14,16 @@ try{
                     $_SESSION["loggedIn"] = true;
 
                     $_SESSION["user"] = [$cursorArray[0]->_id,$username];
-                    header('Location: ../userlist.php');
+                    header('Location: ../views/userlist.php');
             } else {
                 $_SESSION["message"] = "Wrong password";
                 $_SESSION["form"] = $_POST;
-                header('Location: ../loginuser.php');                
+                header('Location: ../views/loginuser.php');                
             } 
     } else {
         $_SESSION["form"] = $_POST;
         $_SESSION["message"] = "No User Found";
-        header('Location: ../loginuser.php');
+        header('Location: ../views/loginuser.php');
     }
 } catch(MongoDB\Driver\Exception\Exception $e){
     die("Error: ".$e);

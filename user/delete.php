@@ -6,9 +6,9 @@
 
     try{
         $bulk->delete(['_id' => new MongoDB\BSON\ObjectId($id)]);
-        include 'db.inc.php';
+        include '../connect/db.inc.php';
         $result = $manager->executeBulkWrite($dbname, $bulk);
-        header("Location: ../userlist.php");
+        header("Location: ../views/userlist.php");
     }
     catch(MongoDB\Driver\Exception\Exception $e) {
         die("Error".$e);
