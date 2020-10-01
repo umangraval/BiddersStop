@@ -15,16 +15,12 @@
             <form action="user/update.php" method="POST">
             <input type="hidden" name="id" id="id"  value="<?php echo $_GET["id"]; ?>">
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text"  name="name" class="form-control" id="name" value="<?php echo $_GET["name"]; ?>">
-                </div>
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text"  name="username" class="form-control" id="username" value="<?php echo $_GET["username"]; ?>">
-                </div>
-                <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password"  name="pwd" class="form-control" id="pwd" value="<?php echo $_GET["password"]; ?>">
+                    <input type="text"  name="pwd" class="form-control" id="pwd">
+                </div>
+                <div class="form-group">
+                    <label for="cpassword">Confirm Password</label>
+                    <input type="password"  name="cpwd" class="form-control" id="cpwd">
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Update</button>
             </form>

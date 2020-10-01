@@ -17,8 +17,12 @@ echo("Enter my lord!");
 </head>
 <body>
 <a href="form.php" class="btn btn-success btn-block">New User</a>            
-<a href="user/logout.php" class="btn btn-danger btn-block">Logout</a>            
-
+<a href="user/logout.php" class="btn btn-danger btn-block">Logout</a>
+<?php
+    $id= $_SESSION['user'][0];
+    // echo "<a href="edituser.php?id=".$id."' class="btn btn-info btn-block">Change password</a>";
+    echo "<a class='btn btn-info btn-block' href='edituser.php?id=".$id."'>Change Password</a>";        
+?>
 <br>
 <?php
 try{

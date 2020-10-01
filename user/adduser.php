@@ -15,12 +15,13 @@
         $_SESSION["form"] = $_POST;
         header('Location: ../register.php');
         exit();
-    } else if(!preg_match($regexPwd, $username)){
-        $_SESSION["message"] = "Password should contain at least 6 characters";
-        $_SESSION["form"] = $_POST;
-        header('Location: ../register.php');
-        exit();
-    }
+    } 
+    // else if(!preg_match($regexPwd, $username)){
+    //     $_SESSION["message"] = "Password should contain at least 6 characters";
+    //     $_SESSION["form"] = $_POST;
+    //     header('Location: ../register.php');
+    //     exit();
+    // }
 
     $query = new MongoDB\Driver\Query($filter);
 

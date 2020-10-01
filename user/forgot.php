@@ -2,18 +2,14 @@
     $bulk = new MongoDB\Driver\BulkWrite;
 
     $id = $_POST["id"];
-    // $name = $_POST["name"];
-    // $username = $_POST["username"];
+    $username = $_POST["username"];
     $pwd = $_POST["pwd"];
-    $password = password_hash($pwd,  PASSWORD_DEFAULT);
+
     try{
         $bulk->update(['_id' => new MongoDB\BSON\ObjectId($id)],
-        ['$set' => ['password' => $password]],
-        // [
-        //     // 'name' => $name,
-        //     // 'username' => $username,
-        //     'password' => $password
-        // ]
+        [
+            'password' => $pwd
+        ]
     );
         include 'db.inc.php';
         $result = $manager->executeBulkWrite($dbname, $bulk);

@@ -12,7 +12,8 @@ try{
     if(isset($cursorArray[0])) {
             if(password_verify($pwd, $cursorArray[0]->password)){
                     $_SESSION["loggedIn"] = true;
-                    $_SESSION["username"] = $username;
+
+                    $_SESSION["user"] = [$cursorArray[0]->_id,$username];
                     header('Location: ../userlist.php');
             } else {
                 $_SESSION["message"] = "Wrong password";
