@@ -16,9 +16,11 @@ try{
                     header('Location: ../userlist.php');
             } else {
                 $_SESSION["message"] = "Wrong password";
+                $_SESSION["form"] = $_POST;
                 header('Location: ../loginuser.php');                
             } 
     } else {
+        $_SESSION["form"] = $_POST;
         $_SESSION["message"] = "No User Found";
         header('Location: ../loginuser.php');
     }

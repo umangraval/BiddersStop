@@ -24,13 +24,17 @@
             <form action="user/login.php" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text"  name="username" class="form-control" id="username" placeholder="Enter Username">
+                    <input type="text"  name="username" class="form-control" id="username" value="<?php echo isset($_SESSION['form']) ? $_SESSION['form']['username'] : '' ?>" placeholder="Enter Username">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password"  name="pwd" class="form-control" id="pwd" placeholder="Enter Password">
+                    <input type="password"  name="pwd" class="form-control" id="pwd" value="<?php echo isset($_SESSION['form']) ? $_SESSION['form']['pwd'] : '' ?>" placeholder="Enter Password">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <?php
+                    unset($_SESSION['form']);
+                ?>
+                <button type="submit" class="btn btn-success btn-block">Login</button>
+                <a class="btn btn-primary btn-block" href="/register.php" role="button">Register</a>
             </form>
             </div>
         </div>
