@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if($_SESSION["loggedIn"] != true) {
-   header('Location: error/accessdenied.html');
+   header('Location: /error/accessdenied.html');
     exit();
 }
 ?>
@@ -14,6 +14,9 @@ if($_SESSION["loggedIn"] != true) {
     <title>Document</title>
 </head>
 <body>
+<?php
+include('../components/navbar.php');
+?>
     <div class="container">
         <div class="row justify-content-center">
         <div class="col-md-6 mt-5">

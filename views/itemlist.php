@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if($_SESSION["loggedIn"] != true) {
-   header('Location: error/accessdenied.html');
+   header('Location: /error/accessdenied.html');
     exit();
 }
 ?>
@@ -15,12 +15,15 @@ if($_SESSION["loggedIn"] != true) {
     <title>Document</title>
 </head>
 <body>
+<?php
+include('../components/navbar.php');
+?>
 <a href="../views/newitem.php" class="btn btn-success btn-block">New Item</a>            
 <a href="../user/logout.php" class="btn btn-danger btn-block">Logout</a>
 <?php
     $id= $_SESSION['user'][0];
     // echo "<a href="edituser.php?id=".$id."' class="btn btn-info btn-block">Change password</a>";
-    echo "<a class='btn btn-info btn-block' href='edituser.php?id=".$id."'>Change Password</a>";        
+    // echo "<a class='btn btn-info btn-block' href='edituser.php?id=".$id."'>Change Password</a>";        
 ?>
 <br>
 <?php

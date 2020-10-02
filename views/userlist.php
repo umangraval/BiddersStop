@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if($_SESSION["loggedIn"] != true) {
-   header('Location: error/accessdenied.html');
+   header('Location: /error/accessdenied.html');
     exit();
 }
 ?>
@@ -15,12 +15,15 @@ if($_SESSION["loggedIn"] != true) {
     <title>Document</title>
 </head>
 <body>
+<?php
+include('../components/navbar.php');
+?>
 <a href="form.php" class="btn btn-success btn-block">New User</a>            
 <a href="../user/logout.php" class="btn btn-danger btn-block">Logout</a>
 <?php
     $id= $_SESSION['user'][0];
     // echo "<a href="edituser.php?id=".$id."' class="btn btn-info btn-block">Change password</a>";
-    echo "<a class='btn btn-info btn-block' href='edituser.php?id=".$id."'>Change Password</a>";        
+    echo "<a class='btn btn-info btn-block' href='pwdchange.php?id=".$id."'>Change Password</a>";        
 ?>
 <br>
 <?php
@@ -33,19 +36,12 @@ try{
     <thead>
     <th>Name</th>
     <th>Username</th>
-    <th>Action</th>
     </thead>";
 
     foreach($rows as $row){
         echo "<tr>".
         "<td>".$row->name."</td>".
-        "<td>".$row->username."</td>".
-        "<td><a class= 'btn btn-info' href='edituser.php?
-        id=".$row->_id."&name=".$row->name.
-        "&username=".$row->username.
-        "&password=".$row->password.
-        "'>Edit</a> <a class='btn btn-danger' href='../user/delete.php?id=".$row->_id."'>Delete</a></td>".
-        "</tr>";
+        "<td>".$row->username."</td></tr>";
     }
     echo "</table>";
 } catch(MongoDB\Driver\Exception\Exception $e){
