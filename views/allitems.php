@@ -4,7 +4,6 @@ if($_SESSION["loggedIn"] != true) {
    header('Location: error/accessdenied.html');
     exit();
 }
-echo("Enter my lord!");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +15,7 @@ echo("Enter my lord!");
     <title>Document</title>
 </head>
 <body>
-<a href="form.php" class="btn btn-success btn-block">New Item</a>            
+<a href="newitem.php" class="btn btn-success btn-block">New Item</a>            
 <a href="../user/logout.php" class="btn btn-danger btn-block">Logout</a>
 <?php
     $id= $_SESSION['user'][0];
@@ -41,7 +40,7 @@ try{
         echo "<tr>".
         "<td>".$row->desc."</td>".
         "<td>".$row->cdate."</td>".
-        "<td><a class='btn btn-success' href='../items/newbid.php?id=".$row->_id."'>Bid</a></td>".
+        "<td><a class='btn btn-info' href='itemdetails.php?id=".$row->_id."'>Show</a></td>".
         "</tr>";
     }
     echo "</table>";

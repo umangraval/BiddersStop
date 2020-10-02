@@ -21,19 +21,40 @@ if($_SESSION["loggedIn"] != true) {
     $id= $_SESSION['user'][0];
     // echo "<a href="edituser.php?id=".$id."' class="btn btn-info btn-block">Change password</a>";
     echo "<a class='btn btn-info btn-block' href='edituser.php?id=".$id."'>Change Password</a>";        
-?>
-<br>
-<?php
-$owner = $_SESSION['user'][1];
-$filter = ['owner' => $owner];
+
+$id = $_GET['id'];
+$filter = ['_id' => new MongoDB\BSON\ObjectId($id)];
+$filterbid = ['itemid' => new MongoDB\BSON\ObjectId($id)];
+$options = ['sort' => ['bidamt' => -1]];
 try{
     include '../connect/db.inc.php';
     $query = new MongoDB\Driver\Query($filter);
+    $querybid = new MongoDB\Driver\Query($filterbid, $options);
+
+    $bids = $manager->executeQuery($dbbids, $querybid);
 
     $rows = $manager->executeQuery($dbitem, $query);
     echo "<table class='table'>
     <thead>
+    <th>Date</th>
+    <th>Time</th>
+    <th>Bidder</th>
+    <th>Bid Amount</th>
+    </thead>";
+    foreach($bids as $bid){
+        echo "<tr>".
+        "<td>".$bid->date."</td>".
+        "<td>".$bid->time."</td>".
+        "<td>".$bid->bidder."</td>".
+        "<td>".$bid->bidamt."</td>".
+        "</tr>";
+    }
+    echo "</table>";
+    
+    echo "<table class='table'>
+    <thead>
     <th>Description</th>
+    <th>Owner</th>
     <th>Closing date</th>
     <th>Action</th>
     </thead>";
@@ -41,10 +62,26 @@ try{
     foreach($rows as $row){
         echo "<tr>".
         "<td>".$row->desc."</td>".
+        "<td>".$row->owner."</td>".
         "<td>".$row->cdate."</td>".
-        "<td><a class='btn btn-danger' href='../items/deleteitem.php?id=".$row->_id."'>Delete</a></td>".
-        "</tr>";
+        "<td>";
+        
+        echo "<form method='POST' action='../bids/newbid.php?id=".$row->_id."'>
+        <input type='hidden' name='id' value='".$id."'>
+        <input type='hidden' name='bidder' value='".$_SESSION["user"][1]."'>
+        <div class='form-group'>
+                    <label for='bid'>Your Bid</label>";
+                    if (isset($_SESSION["message"]))
+    {
+        echo '<div class="alert alert-danger" role="alert">'
+        .$_SESSION["message"].'</div>';
+        unset($_SESSION["message"]);
     }
+                   echo "<input type='number'  name='bid' class='form-control' placeholder='Enter Amount'>
+                </div>
+                <button type='submit' class='btn btn-success btn-block'>Bid</button>
+                </form></tr>";
+            }
     echo "</table>";
 } catch(MongoDB\Driver\Exception\Exception $e){
     die("Error: ".$e);

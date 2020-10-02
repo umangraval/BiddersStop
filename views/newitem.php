@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if($_SESSION["loggedIn"] != true) {
+   header('Location: error/accessdenied.html');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +29,7 @@
         ?>
             <!-- <a href="userlist.php" class="btn btn-success btn-block">Go to user list</a> -->
             <form action="../items/additem.php" method="POST">
-            <input type="hidden" name="owner" id="id"  value="<?php echo $_SESSION["user"][0]; ?>">
+            <input type="hidden" name="owner" id="id"  value="<?php echo $_SESSION["user"][1]; ?>">
                 <div class="form-group">
                     <label for="desc">Description</label>
                     <input type="text"  name="desc" class="form-control" id="desc" value="<?php echo isset($_SESSION['form']) ? $_SESSION['form']['desc'] : '' ?>" placeholder="Enter Description">

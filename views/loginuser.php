@@ -34,7 +34,7 @@
                     unset($_SESSION['form']);
                 ?>
                 <button type="submit" class="btn btn-success btn-block">Login</button>
-                <a class="btn btn-primary btn-block" href="/register.php" role="button">Register</a>
+                <a class="btn btn-primary btn-block" href="register.php" role="button">Register</a>
             </form>
             </div>
         </div>

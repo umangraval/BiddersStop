@@ -1,3 +1,10 @@
+<?php 
+session_start();
+if($_SESSION["loggedIn"] != true) {
+   header('Location: error/accessdenied.html');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -4,7 +4,6 @@ if($_SESSION["loggedIn"] != true) {
    header('Location: error/accessdenied.html');
     exit();
 }
-echo("Enter my lord!");
 ?>
 <!DOCTYPE html>
 <html lang="en">

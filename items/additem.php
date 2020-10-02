@@ -39,10 +39,9 @@
 
     $item = [
         '_id' => new MongoDB\BSON\ObjectId,
-        'owner' => new MongoDB\BSON\ObjectId($owner),
+        'owner' => $owner,
         'cdate' => $cdate,
-        'desc' => $desc,
-        'bids' => []
+        'desc' => $desc
     ];
 
     try{
