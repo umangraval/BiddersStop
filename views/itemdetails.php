@@ -65,7 +65,11 @@ try{
         "<td>".$row->owner."</td>".
         "<td>".$row->cdate."</td>".
         "<td>";
-        
+        if ($_SESSION["user"][1] == $row->owner){
+            echo '<div class="alert alert-warning" role="alert">
+            Owner cannot bid
+          </div>';
+}   else {
         echo "<form method='POST' action='../bids/newbid.php?id=".$row->_id."'>
         <input type='hidden' name='id' value='".$id."'>
         <input type='hidden' name='bidder' value='".$_SESSION["user"][1]."'>
@@ -76,11 +80,12 @@ try{
         echo '<div class="alert alert-danger" role="alert">'
         .$_SESSION["message"].'</div>';
         unset($_SESSION["message"]);
-    }
-                   echo "<input type='number'  name='bid' class='form-control' placeholder='Enter Amount'>
+    }           
+        echo "<input type='number' name='bid' class='form-control' placeholder='Enter Amount'>
                 </div>
                 <button type='submit' class='btn btn-success btn-block'>Bid</button>
                 </form></tr>";
+    }
             }
     echo "</table>";
 } catch(MongoDB\Driver\Exception\Exception $e){
