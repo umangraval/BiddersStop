@@ -26,7 +26,11 @@ if($_SESSION["loggedIn"] != true) {
 <?php
 try{
     include '../connect/db.inc.php';
-    $query = new MongoDB\Driver\Query([]);
+    date_default_timezone_set("Asia/Kolkata");
+    $curentdate = new MongoDB\BSON\UTCDateTime(strtotime(date("Y-m-d")) * 1000);
+    $filter = ['cdate' => ['$gte' => $curentdate]];
+    $options = ['sort' => ['cdate' => -1]];    
+    $query = new MongoDB\Driver\Query($filter, $options);
 
     $rows = $manager->executeQuery($dbitem, $query);
     echo "<table class='table'>
@@ -38,8 +42,13 @@ try{
 
     foreach($rows as $row){
         echo "<tr>".
-        "<td>".$row->desc."</td>".
-        "<td>".$row->cdate."</td>".
+        "<td>".$row->desc."</td>";
+        $datetime = $row->cdate->toDateTime();
+        $time=$datetime->format(DATE_RSS);
+        $dateInUTC=$time;
+        $time = strtotime($dateInUTC.' UTC');
+        $dateInLocal = date("Y-m-d", $time);
+        echo "<td>".$dateInLocal."</td>".
         "<td><a class='btn btn-info' href='itemdetails.php?id=".$row->_id."'>Show</a></td>".
         "</tr>";
     }

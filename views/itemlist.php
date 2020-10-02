@@ -24,11 +24,13 @@ if($_SESSION["loggedIn"] != true) {
 ?>
 <br>
 <?php
+date_default_timezone_set("Asia/Kolkata");
 $owner = $_SESSION['user'][1];
 $filter = ['owner' => $owner];
+$options = ['sort' => ['cdate' => -1]];   
 try{
     include '../connect/db.inc.php';
-    $query = new MongoDB\Driver\Query($filter);
+    $query = new MongoDB\Driver\Query($filter, $options);
 
     $rows = $manager->executeQuery($dbitem, $query);
     echo "<table class='table'>
@@ -40,8 +42,13 @@ try{
 
     foreach($rows as $row){
         echo "<tr>".
-        "<td>".$row->desc."</td>".
-        "<td>".$row->cdate."</td>".
+        "<td>".$row->desc."</td>";
+        $datetime = $row->cdate->toDateTime();
+        $time=$datetime->format(DATE_RSS);
+        $dateInUTC=$time;
+        $time = strtotime($dateInUTC.' UTC');
+        $dateInLocal = date("Y-m-d", $time);
+        echo "<td>".$dateInLocal."</td>".
         "<td><a class='btn btn-danger' href='../items/deleteitem.php?id=".$row->_id."'>Delete</a></td>".
         "</tr>";
     }
