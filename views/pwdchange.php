@@ -20,9 +20,21 @@ include('../components/navbar.php');
     <div class="container">
         <div class="row justify-content-center">
         <div class="col-md-6 mt-5">
-        <h1 class="text-center">Edit User</h1>
-            <form action="../user/update.php" method="POST">
-            <input type="hidden" name="id" id="id"  value="<?php echo $_GET["id"]; ?>">
+        <h1 class="text-center">Change Password</h1>
+        <?php
+            if (isset($_SESSION['message']))
+            {
+                echo '<div class="alert alert-danger" role="alert">'
+                .$_SESSION['message'].'</div>';
+                unset($_SESSION['message']);
+            } else if (isset($_SESSION['smessage'])) {
+                echo '<div class="alert alert-success" role="alert">'
+                .$_SESSION['smessage'].'</div>';
+                unset($_SESSION['smessage']);
+            }
+        ?>
+            <form action="/user/update.php" method="POST">
+            <input type="hidden" name="id" id="id"  value="<?php echo $_SESSION['user'][0]; ?>">
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="text"  name="pwd" class="form-control" id="pwd">

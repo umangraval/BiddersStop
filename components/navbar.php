@@ -23,10 +23,10 @@ echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       </li>';
     } else {
         echo '<li class="nav-item active px-md-3">
-        <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/views/loginuser.php">Login <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active px-md-5">
-      <a class="nav-link" href="#">Signup<span class="sr-only">(current)</span></a>
+      <a class="nav-link" href="/views/register.php">Signup<span class="sr-only">(current)</span></a>
     </li>';
     }
   echo '</ul>

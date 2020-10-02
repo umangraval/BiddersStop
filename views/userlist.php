@@ -18,13 +18,11 @@ if($_SESSION["loggedIn"] != true) {
 <?php
 include('../components/navbar.php');
 ?>
-<a href="form.php" class="btn btn-success btn-block">New User</a>            
-<a href="../user/logout.php" class="btn btn-danger btn-block">Logout</a>
-<?php
-    $id= $_SESSION['user'][0];
-    // echo "<a href="edituser.php?id=".$id."' class="btn btn-info btn-block">Change password</a>";
-    echo "<a class='btn btn-info btn-block' href='pwdchange.php?id=".$id."'>Change Password</a>";        
-?>
+<div class="container">
+        <div class="row justify-content-center">
+        <div class="col-md-8 mt-3 text-center">
+<!-- <a href="form.php" class="btn btn-success btn-block">New User</a>             -->
+<!-- <a href="../user/logout.php" class="btn btn-danger btn-block">Logout</a> -->
 <br>
 <?php
 try{
@@ -32,8 +30,8 @@ try{
     $query = new MongoDB\Driver\Query([]);
 
     $rows = $manager->executeQuery($dbuser, $query);
-    echo "<table class='table'>
-    <thead>
+    echo "<table class='table table-hover'>
+    <thead class='thead-dark'>
     <th>Name</th>
     <th>Username</th>
     </thead>";
@@ -47,7 +45,11 @@ try{
 } catch(MongoDB\Driver\Exception\Exception $e){
     die("Error: ".$e);
 }
-?>    
+?>
+
+</div>
+</div>
+</div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
