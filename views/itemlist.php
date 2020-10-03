@@ -21,7 +21,7 @@ include('../components/navbar.php');
 <div class="container">
         <div class="row justify-content-center">
         <div class="col-md-8 mt-3 text-center">
-<!-- <a href="../views/newitem.php" class="btn btn-success btn-block">New Item</a>             -->
+<a href="newitem.php" class="btn btn-success btn-block">New Item</a>            
 <!-- <a href="../user/logout.php" class="btn btn-danger btn-block">Logout</a> -->
 <br>
 <?php
@@ -50,7 +50,7 @@ try{
         $time = strtotime($dateInUTC.' UTC');
         $dateInLocal = date("Y-m-d", $time);
         echo "<td>".$dateInLocal."</td>".
-        "<td><a class='btn btn-danger' href='../items/deleteitem.php?id=".$row->_id."'>Delete</a></td>".
+        "<td><a class='btn btn-info' href='itemdetails.php?id=".$row->_id."'>Show</a> | <a class='btn btn-danger' href='../items/deleteitem.php?id=".$row->_id."'>Delete</a></td>".
         "</tr>";
     }
     echo "</table>";

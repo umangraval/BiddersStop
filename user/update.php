@@ -8,9 +8,7 @@
     if($pwd == $cpwd && strlen($pwd)){
     $password = password_hash($pwd,  PASSWORD_DEFAULT);
     try{
-        $bulk->update(['_id' => new MongoDB\BSON\ObjectId($id)],
-        ['$set' => ['password' => $password]],
-    );
+        $bulk->update(['_id' => new MongoDB\BSON\ObjectId($id)],['$set' => ['password' => $password]]);
         include '../connect/db.inc.php';
         $result = $manager->executeBulkWrite($dbuser, $bulk);
         $_SESSION["smessage"] = "Password Updated";

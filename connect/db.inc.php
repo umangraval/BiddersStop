@@ -1,6 +1,6 @@
 <?php
     $manager = new MongoDB\Driver\Manager("mongodb://mongo:27017");
-    $dbuser = "phpbasics.test";
-    $dbitem = "phpbasics.item";
-    $dbbids = "phpbasics.bids";
+    $dbuser = "biddersstop.users";
+    $dbitem = "biddersstop.items";
+    $dbbids = "biddersstop.bids";
 ?>
