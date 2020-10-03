@@ -1,8 +1,10 @@
-FROM php:7.4-cli
-COPY . /usr/src/myapp
-WORKDIR /usr/src/myapp
-RUN apt-get update && apt-get install -y autoconf build-essential
-RUN pecl install mongodb
-RUN echo "extension=mongo.so" > /usr/local/etc/php/conf.d/mongo.ini
-EXPOSE 8000
-CMD ["php -S", "0.0.0.0:8000"]
+FROM php:7.2-apache
+COPY . /var/www/html
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends openssl libssl-dev libcurl4-openssl-dev \
+    && pecl install mongodb \
+    && cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini \
+    && echo "extension=mongodb.so" >> /usr/local/etc/php/php.ini \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+EXPOSE 80

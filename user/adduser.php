@@ -46,7 +46,6 @@
     try{
         $bulk->insert($user);
         // include 'db.inc.php';
-        $manager = new MongoDB\Driver\Manager('mongodb://localhost:27017');
         $result = $manager->executeBulkWrite($dbuser, $bulk);
         session_start();
         $_SESSION["loggedIn"] = true;
