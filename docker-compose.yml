@@ -18,3 +18,14 @@ services:
         - ./db:/data/db
     ports:
         - "27017:27017"
+
+  mongoseed:
+    image: mongo
+    container_name: "phpmongoseed"
+    links:
+            - "mongo:mongo"
+    depends_on:
+      - mongo
+    volumes:
+            - ./dbseed:/dbseed
+    command: mongorestore --uri "mongodb://mongo:27017" -d biddersstop /dbseed/biddersstop
