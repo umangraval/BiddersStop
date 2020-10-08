@@ -1,5 +1,3 @@
-<!-- <a href="../userlist.php">View User</a> -->
-<!-- <br> -->
 <?php
     session_start();
     include '../connect/db.inc.php';

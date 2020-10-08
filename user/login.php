@@ -10,16 +10,16 @@ try{
     $rows = $manager->executeQuery($dbuser, $query);
     $cursorArray = $rows->toArray();
     if(isset($cursorArray[0])) {
-            if(password_verify($pwd, $cursorArray[0]->password)){
-                    $_SESSION["loggedIn"] = true;
+        if(password_verify($pwd, $cursorArray[0]->password)){
+                $_SESSION["loggedIn"] = true;
 
-                    $_SESSION["user"] = [$cursorArray[0]->_id,$username];
-                    header('Location: ../views/userlist.php');
-            } else {
-                $_SESSION["message"] = "Wrong password";
-                $_SESSION["form"] = $_POST;
-                header('Location: ../views/loginuser.php');                
-            } 
+                $_SESSION["user"] = [$cursorArray[0]->_id,$username];
+                header('Location: ../views/userlist.php');
+        } else {
+            $_SESSION["message"] = "Wrong password";
+            $_SESSION["form"] = $_POST;
+            header('Location: ../views/loginuser.php');                
+        } 
     } else {
         $_SESSION["form"] = $_POST;
         $_SESSION["message"] = "No User Found";

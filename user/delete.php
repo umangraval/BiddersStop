@@ -3,7 +3,6 @@
 
     $id = $_GET["id"];
 
-
     try{
         $bulk->delete(['_id' => new MongoDB\BSON\ObjectId($id)]);
         include '../connect/db.inc.php';
