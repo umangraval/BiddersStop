@@ -37,6 +37,7 @@ if($_SESSION["loggedIn"] != true) {
                                 <thead class='thead-dark'>
                                 <th>Description</th>
                                 <th>Closing date</th>
+                                <th>Status</th>
                                 <th>Action</th>
                                 </thead>";
 
@@ -48,8 +49,13 @@ if($_SESSION["loggedIn"] != true) {
                                     $dateInUTC=$time;
                                     $time = strtotime($dateInUTC.' UTC');
                                     $dateInLocal = date("Y-m-d", $time);
-                                echo "<td>".$dateInLocal."</td>".
-                                    "<td><a class='btn btn-info' href='itemdetails.php?id=".$row->_id."'>Show</a> | <a class='btn btn-danger' href='../items/deleteitem.php?id=".$row->_id."'>Delete</a></td>".
+                                echo "<td>".$dateInLocal."</td>";
+                                if ($dateInLocal >= date("Y-m-d")) { 
+                                    echo "<td>Active</td>";
+                                } else {
+                                    echo "<td>Closed</td>";
+                                }
+                                echo "<td><a class='btn btn-info' href='itemdetails.php?id=".$row->_id."'>Show</a> | <a class='btn btn-danger' href='../items/deleteitem.php?id=".$row->_id."'>Delete</a></td>".
                                     "</tr>";
                             }
                             echo "</table>";
